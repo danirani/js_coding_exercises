@@ -163,4 +163,14 @@ describe("duplicateNumbers", () => {
     arr2 = [3, 3, 3, 4, 5];
     expect(duplicateNumbers(arr1, arr2)).toEqual([3]);
   });
+
+  test("returns each number only once, even if it appears in one array multiple times - extra test", () => {
+    let arr1 = [7, 1, 5, 4, 3, 1, 7];
+    let arr2 = [1, 7, 7, 1];
+    expect(duplicateNumbers(arr1, arr2)).toEqual([1, 7]);
+
+    arr1 = [0, 0, 0];
+    arr2 = [0, 3, 0, 4, 5];
+    expect(duplicateNumbers(arr1, arr2)).toEqual([0]);
+  });
 });

@@ -47,14 +47,21 @@ function checkIngredients(menu, ingredient) {
     }
   }
 
-
   return count > 0;
 }
 
 function duplicateNumbers(arr1, arr2) {
   if (arr1 === undefined) throw new Error("arr1 is required");
   if (arr2 === undefined) throw new Error("arr2 is required");
-  // Your code here!
+
+  // add to an array any numbers in arr2 that match those in arr1
+  let matchArray = arr1.filter(member => arr2.includes(member));
+
+  // create a set which by definition can only store distinct values;
+  // sort the distinct values after converting the set back to
+  // an array.
+
+  return Array.from(new Set(matchArray)).sort();
 }
 
 module.exports = {
