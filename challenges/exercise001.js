@@ -4,17 +4,21 @@ function capitalize(word) {
 
 function generateInitials(firstName, lastName) {
 
-  if(!firstName.length || !lastName.length) {
+  if (!firstName.length || !lastName.length) {
     return "";
   }
 
-  return firstName.charAt(0)+"."+lastName.charAt(0);
+  return firstName.charAt(0) + "." + lastName.charAt(0);
 }
 
 function addVAT(originalPrice, vatRate) {
-  if (originalPrice === undefined) throw new Error("originalPrice is requied");
-  if (vatRate === undefined) throw new Error("vatRate is required");
-  // Add your code here!
+
+  let salesPrice = originalPrice * (1 + vatRate / 100.00);
+
+  // round salesPrice to 2 dp using mult/divide
+  // as .toFixed(2) returns a string value
+
+  return Math.round(salesPrice * 100) / 100;
 }
 
 function getSalePrice(originalPrice, reduction) {
