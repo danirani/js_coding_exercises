@@ -144,4 +144,17 @@ describe("hasMPostCode", () => {
     };
     expect(hasMPostCode(person)).toBe(false);
   });
+
+  test("returns true if the postcode starts with M an is for Manchester but contains extra spaces", () => {
+    const person = {
+      name: "Phil",
+      age: 37,
+      address: {
+        line1: "14 Station Road",
+        city: "Manchester",
+        postCode: " M 8  5EB"
+      }
+    };
+    expect(hasMPostCode(person)).toBe(true);
+  });
 });
