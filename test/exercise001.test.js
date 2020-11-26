@@ -135,6 +135,9 @@ describe("getMeanScore", () => {
 
   test("returns the mean to 2 decimal places", () => {
     expect(getMeanScore([24, 44, 56, 11, 12, 17, 34])).toBe(28.29);
+    expect(getMeanScore([1,2,7])).toBe(3.33);
+    expect(getMeanScore([0,0])).toBe(0);
+    expect(getMeanScore([])).toBe(-1);
   });
 });
 

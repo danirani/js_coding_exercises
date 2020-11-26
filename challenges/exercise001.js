@@ -61,10 +61,10 @@ function reverseAllWords(words) {
 
 function countLinuxUsers(users) {
 
-  let count=0;
+  let count = 0;
 
-  for(let u of users) {
-    if(u.type === "Linux") {
+  for (let u of users) {
+    if (u.type === "Linux") {
       count++;
     }
   }
@@ -73,8 +73,16 @@ function countLinuxUsers(users) {
 }
 
 function getMeanScore(scores) {
-  if (scores === undefined) throw new Error("scores is required");
-  // Add your code here!
+
+  const sum = arr => arr.reduce((a, b) => a + b, 0);
+
+  if (!scores.length) {
+    return -1;
+  }
+
+  let average = sum(scores) / scores.length;
+
+  return Math.round(average * 100.0) / 100.0;
 }
 
 function simpleFizzBuzz(n) {
