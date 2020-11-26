@@ -20,12 +20,15 @@ describe("capitalize", () => {
 
   test("does nothing if the string is already capitalized", () => {
     expect(capitalize("Hello")).toBe("Hello");
+    expect(capitalize("")).toBe("");
   });
 });
 
 describe("generateInitials", () => {
   test("returns the initials of a firstname and surname", () => {
     expect(generateInitials("Frederic", "Bonneville")).toBe("F.B");
+    expect(generateInitials("", "Smith")).toBe("");
+    expect(generateInitials("John", "")).toBe("");
   });
 });
 
