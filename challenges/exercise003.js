@@ -29,7 +29,10 @@ function camelCaseWords(words) {
 
 function getTotalSubjects(people) {
   if (people === undefined) throw new Error("people is required");
-  // Your code here!
+
+  // accumulate the length of the subject array in total
+
+  return people.reduce( (total, people) => total+people.subjects.length, 0);
 }
 
 function checkIngredients(menu, ingredient) {
