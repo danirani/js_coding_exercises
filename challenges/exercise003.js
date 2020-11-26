@@ -1,7 +1,7 @@
 function getSquares(nums) {
   if (nums === undefined) throw new Error("nums is required");
 
-  return nums.map(n => n*n);
+  return nums.map(n => n * n);
 }
 
 function camelCaseWords(words) {
@@ -32,13 +32,23 @@ function getTotalSubjects(people) {
 
   // accumulate the length of the subject array in total
 
-  return people.reduce( (total, people) => total+people.subjects.length, 0);
+  return people.reduce((total, people) => total + people.subjects.length, 0);
 }
 
 function checkIngredients(menu, ingredient) {
   if (menu === undefined) throw new Error("menu is required");
   if (!ingredient) throw new Error("ingredient is required");
-  // Your code here!
+
+  let count = 0;
+
+  for (let meal of menu) {
+    if (meal.ingredients.includes(ingredient)) {
+      count++;
+    }
+  }
+
+
+  return count > 0;
 }
 
 function duplicateNumbers(arr1, arr2) {
