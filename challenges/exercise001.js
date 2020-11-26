@@ -22,9 +22,12 @@ function addVAT(originalPrice, vatRate) {
 }
 
 function getSalePrice(originalPrice, reduction) {
-  if (originalPrice === undefined) throw new Error("originalPrice is required");
-  if (reduction === undefined) throw new Error("reduction is required");
-  // Add your code here!
+  let salesPrice = originalPrice * (1 - reduction / 100.00);
+
+  // round salesPrice to 2 dp using mult/divide
+  // as .toFixed(2) returns a string value
+
+  return Math.round(salesPrice * 100) / 100;
 }
 
 function getMiddleCharacter(str) {
