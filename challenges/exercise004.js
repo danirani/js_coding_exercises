@@ -3,11 +3,11 @@ function findSmallNums(nums) {
 
   let smallArray = [];
 
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] < 1) {
-      smallArray.push(nums[i]);
+  nums.forEach(n => {
+    if (n < 1) {
+      smallArray.push(n);
     }
-  }
+  });
 
   return smallArray;
 }
@@ -18,11 +18,11 @@ function findNamesBeginningWith(names, char) {
 
   let namesArray = [];
 
-  for (let i = 0; i < names.length; i++) {
-    if (names[i][0] === char) {
-      namesArray.push(names[i]);
+  names.forEach(n => {
+    if (n[0] === char) {
+      namesArray.push(n);
     }
-  }
+  });
 
   return namesArray;
 }
@@ -32,11 +32,11 @@ function findVerbs(words) {
 
   let verbsArray = [];
 
-  for (let i = 0; i < words.length; i++) {
-    if (words[i].substr(0, 3) === "to ") {
-      verbsArray.push(words[i]);
+  words.forEach(w => {
+    if (w.substr(0, 3) === "to ") {
+      verbsArray.push(w);
     }
-  }
+  });
 
   return verbsArray;
 }
@@ -46,11 +46,11 @@ function getIntegers(nums) {
 
   let intArray = [];
 
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] === Math.trunc(nums[i])) {
-      intArray.push(nums[i]);
+  nums.forEach(n => {
+    if (n === Math.trunc(n)) {
+      intArray.push(n);
     }
-  }
+  });
 
   return intArray;
 }
@@ -60,9 +60,9 @@ function getCities(users) {
 
   let cityArray = [];
 
-  for (let i = 0; i < users.length; i++) {
-    cityArray.push(users[i].data.city.displayName);
-  }
+  users.forEach(c => {
+    cityArray.push(c.data.city.displayName);
+  });
 
   return cityArray;
 }
@@ -71,9 +71,11 @@ function getSquareRoots(nums) {
 
   let rootsArray = [];
 
-  for (let i = 0; i < nums.length; i++) {
-    rootsArray.push(Math.round(Math.sqrt(nums[i]) * 100.0) / 100);
-  }
+  nums.forEach(n => {
+    if (n === Math.trunc(n)) {
+      rootsArray.push(Math.round(Math.sqrt(n) * 100.0) / 100);
+    }
+  });
 
   return rootsArray;
 }
@@ -82,15 +84,15 @@ function findSentencesContaining(sentences, str) {
   if (!sentences) throw new Error("sentences is required");
   if (!str) throw new Error("str is required");
 
-  let rootsArray = [];
+  let senArray = [];
 
-  for (let i = 0; i < sentences.length; i++) {
-    if (sentences[i].toLowerCase().indexOf(str.toLowerCase()) !== -1) {
-      rootsArray.push(sentences[i]);
+  sentences.forEach(s => {
+    if (s.toLowerCase().indexOf(str.toLowerCase()) !== -1) {
+      senArray.push(s);
     }
-  }
+  });
 
-  return rootsArray;
+  return senArray;
 }
 
 function getLongestSides(triangles) {
@@ -98,9 +100,9 @@ function getLongestSides(triangles) {
 
   let longestArray = [];
 
-  for (let i = 0; i < triangles.length; i++) {
-    longestArray.push(Math.max(...triangles[i]));
-  }
+  triangles.forEach(t => {
+    longestArray.push(Math.max(...t));
+  });
 
   return longestArray;
 }
