@@ -5,7 +5,25 @@ function getSquares(nums) {
 
 function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
-  // Your code here!
+
+  let first = true;
+  let camelWord = "";
+
+  for (let singleWord of words) {
+
+    if (first) {
+      // use the very first word as is
+      // without any case conversion
+      first = !first;
+      camelWord = singleWord;
+    } else {
+      // convert the first letter of the
+      // remaining non leading words
+      camelWord += singleWord[0].toUpperCase() + singleWord.substring(1);
+    }
+  }
+
+  return camelWord;
 }
 
 function getTotalSubjects(people) {
