@@ -3,6 +3,7 @@ const {
   isValidDNA,
   isItPrime,
   createMatrix,
+  areWeCovered
 } = require("../challenges/exercise006");
 
 describe("sumMultiples", () => {
@@ -71,28 +72,27 @@ describe("isItPrime", () => {
 describe("createMatrix", () => {
   test("pass a matrix dimension number with a fill and check sizing", () => {
     //expect(createMatrix(undefined,undefined)).toEqual(new Error('n is required'));
-    expect(createMatrix(4,'none')).toEqual(
+    expect(createMatrix(4, 'none')).toEqual(
       [
-        [ 'none', 'none', 'none', 'none' ],
-        [ 'none', 'none', 'none', 'none' ],
-        [ 'none', 'none', 'none', 'none' ],
-        [ 'none', 'none', 'none', 'none' ]
+        ['none', 'none', 'none', 'none'],
+        ['none', 'none', 'none', 'none'],
+        ['none', 'none', 'none', 'none'],
+        ['none', 'none', 'none', 'none']
       ]
     );
 
-    expect(createMatrix(2,7)).toEqual(
+    expect(createMatrix(2, 7)).toEqual(
       [
-        [ 7, 7 ],
-        [ 7, 7 ]
+        [7, 7],
+        [7, 7]
       ]
     );
 
-    expect(createMatrix(1,'All Alone')).toEqual(
+    expect(createMatrix(1, 'All Alone')).toEqual(
       [
-        [ 'All Alone' ]
+        ['All Alone']
       ]
     );
-
   });
 
   test("pass erroneous matrix dimension number and fills and test errors", () => {
@@ -105,3 +105,39 @@ describe("createMatrix", () => {
     }
   );
 });
+
+describe("areWeCovered", () => {
+
+  test("test days of the week when there are at least three staff working", () => {
+
+    const staffSchedule = [
+      {name: "Sally", rota: ["Monday", "Tuesday", "Wednesday", "Friday"]},
+      {name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"]},
+      {name: "Lizzie", rota: ["Saturday", "Sunday", "Tuesday", "Friday"]},
+      {name: "Tony", rota: ["Saturday", "Monday", "Wednesday", "Friday"]},
+    ]
+
+    expect(areWeCovered(staffSchedule, "Monday")).toBe(false);
+
+    const shortDays = ["Monday", "Sunday", "Thursday"];
+    const coveredDays = ["Saturday", "Tuesday", "Wednesday", "Friday"];
+
+    shortDays.forEach(day => expect(areWeCovered(staffSchedule, day)).toBe(false));
+    coveredDays.forEach(day => expect(areWeCovered(staffSchedule, day)).toBe(true));
+
+    const staffSchedule2 = [
+      {name: "Mike", rota: ["Saturday", "Sunday"]},
+      {name: "Karen", rota: ["Saturday", "Sunday"]},
+      {name: "Boss", rota: ["Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]},
+      {name: "TBA", rota: []},
+    ]
+
+    const shortDays2 = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+    const coveredDays2 = ["Saturday", "Sunday"];
+
+    shortDays2.forEach(day => expect(areWeCovered(staffSchedule2, day)).toBe(false));
+    coveredDays2.forEach(day => expect(areWeCovered(staffSchedule2, day)).toBe(true));
+
+  });
+});
+

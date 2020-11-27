@@ -74,11 +74,11 @@ const createMatrix = (n, fill) => {
     throw new Error('fill is required');
   }
 
-  const matrix=[];
+  const matrix = [];
 
   for (let i = 0; i < n; i++) {
 
-    let row=[];
+    let row = [];
 
     for (let j = 0; j < n; j++) {
       row.push(fill);
@@ -90,29 +90,31 @@ const createMatrix = (n, fill) => {
   return matrix;
 }
 
-  /**
-   * This function takes an array of staff objects in the format:
-   * [
-   *  { name: "Sally", rota: ["Monday", "Tuesday", "Friday"] },
-   *  { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },
-   *  ...etc
-   * ]
-   * and a day of the week. For the café to run successfully, at least 3 staff members are required per day. The function should return true/false depending on whether there are enough staff scheduled for the given day.
-   * @param {Array} staff
-   * @param {String} day
-   * @returns {Boolean}
-   */
-  const areWeCovered = (staff, day) => {
-    if (staff === undefined) throw new Error("staff is required");
+/**
+ * This function takes an array of staff objects in the format:
+ * [
+ *  { name: "Sally", rota: ["Monday", "Tuesday", "Friday"] },
+ *  { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },
+ *  ...etc
+ * ]
+ * and a day of the week. For the café to run successfully, at least 3 staff members are required per day. The function should return true/false depending on whether there are enough staff scheduled for the given day.
+ * @param {Array} staff
+ * @param {String} day
+ * @returns {Boolean}
+ */
+const areWeCovered = (staff, day) => {
+  if (staff === undefined) throw new Error("staff is required");
 
-    if (day === undefined) throw new Error("day is required");
-  };
+  if (day === undefined) throw new Error("day is required");
 
-  module.exports = {
-    sumMultiples,
-    isValidDNA,
-    getComplementaryDNA,
-    isItPrime,
-    createMatrix,
-    areWeCovered
-  };
+  return staff.reduce((total, value) => value.rota.indexOf(day) >= 0 ? total + 1 : total, 0) >= 3;
+};
+
+module.exports = {
+  sumMultiples,
+  isValidDNA,
+  getComplementaryDNA,
+  isItPrime,
+  createMatrix,
+  areWeCovered
+};
