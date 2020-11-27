@@ -2,10 +2,10 @@ const findNextNumber = (nums, n) => {
   if (nums === undefined) throw new Error("nums is required");
   if (n === undefined) throw new Error("n is required");
 
-  let nextValue=null;
+  let nextValue = null;
 
-  nums.forEach( (value,index, array) => {
-    if(value === n && nextValue === null && index < array.length-1) {
+  nums.forEach((value, index, array) => {
+    if (value === n && nextValue === null && index < array.length - 1) {
       nextValue = array[index + 1];
     }
   });
@@ -21,7 +21,7 @@ const count1sand0s = str => {
   // test ordering i.e. not subject to which ever bit
   // appears first in the binary string.
 
-  let countObject={1:0,0:0};
+  let countObject = {1: 0, 0: 0};
 
   str.split("").forEach((value) => countObject[value]++)
 
@@ -30,7 +30,13 @@ const count1sand0s = str => {
 
 const reverseNumber = n => {
   if (n === undefined) throw new Error("n is required");
-  // Your code here!
+
+  let reverseStr="";
+
+  n.toString().split("").forEach(c => reverseStr = c+reverseStr);
+
+  // parseInt will remove any leading digits
+  return parseInt(reverseStr);
 };
 
 const sumArrays = arrs => {
