@@ -1,12 +1,31 @@
 const findNextNumber = (nums, n) => {
   if (nums === undefined) throw new Error("nums is required");
   if (n === undefined) throw new Error("n is required");
-  // Your code here!
+
+  let nextValue=null;
+
+  nums.forEach( (value,index, array) => {
+    if(value === n && nextValue === null && index < array.length-1) {
+      nextValue = array[index + 1];
+    }
+  });
+
+  return nextValue;
 };
 
 const count1sand0s = str => {
   if (str === undefined) throw new Error("str is required");
-  // Your code here!
+
+  // defined the initial state of the counter
+  // object so that the key order matches expected
+  // test ordering i.e. not subject to which ever bit
+  // appears first in the binary string.
+
+  let countObject={1:0,0:0};
+
+  str.split("").forEach((value) => countObject[value]++)
+
+  return countObject;
 };
 
 const reverseNumber = n => {
