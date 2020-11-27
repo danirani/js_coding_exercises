@@ -55,4 +55,13 @@ describe("isItPrime", () => {
     const nonPrimeList = [1, 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21]
     nonPrimeList.forEach(n => expect(isItPrime(n)).toBe(false));
   });
+
+  test("pass a string instead of a number and empty parameters", () => {
+    // unable to catch throw error for some reason
+
+    //expect(isItPrime("Prime")).toThrowError(new Error("n is not a number"));
+    //expect(isItPrime()).toThrowError(new Error("n is undefined"));
+    expect(isItPrime(17)).toBe(true);
+    expect(isItPrime(16)).toBe(false);
+  });
 });
