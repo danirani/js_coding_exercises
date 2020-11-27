@@ -4,9 +4,12 @@
  * @param {Array} arr
  * @returns {Number}
  */
+
 const sumMultiples = arr => {
   if (arr === undefined) throw new Error("arr is required");
-};
+
+  return arr.reduce((sum, value) => (value % 5 === 0 || value % 3 === 0) ? sum + value : sum, 0);
+}
 
 /**
  * This function will receive a string of characters and should return true/false depending on whether it is a valid DNA string. A valid DNA string may contain characters C, G, T or A only.
