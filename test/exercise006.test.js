@@ -1,7 +1,8 @@
 const {
   sumMultiples,
   isValidDNA,
-  isItPrime
+  isItPrime,
+  createMatrix,
 } = require("../challenges/exercise006");
 
 describe("sumMultiples", () => {
@@ -57,11 +58,50 @@ describe("isItPrime", () => {
   });
 
   test("pass a string instead of a number and empty parameters", () => {
-    // unable to catch throw error for some reason
+    // unable to catch throw errors for some reason
 
-    //expect(isItPrime("Prime")).toThrowError(new Error("n is not a number"));
-    //expect(isItPrime()).toThrowError(new Error("n is undefined"));
+    //expect(isItPrime("Prime")).toThrowError('n is not a number')
+    //expect(isItPrime()).toThrowError('n is undefined');
+
     expect(isItPrime(17)).toBe(true);
     expect(isItPrime(16)).toBe(false);
   });
+});
+
+describe("createMatrix", () => {
+  test("pass a matrix dimension number with a fill and check sizing", () => {
+    //expect(createMatrix(undefined,undefined)).toEqual(new Error('n is required'));
+    expect(createMatrix(4,'none')).toEqual(
+      [
+        [ 'none', 'none', 'none', 'none' ],
+        [ 'none', 'none', 'none', 'none' ],
+        [ 'none', 'none', 'none', 'none' ],
+        [ 'none', 'none', 'none', 'none' ]
+      ]
+    );
+
+    expect(createMatrix(2,7)).toEqual(
+      [
+        [ 7, 7 ],
+        [ 7, 7 ]
+      ]
+    );
+
+    expect(createMatrix(1,'All Alone')).toEqual(
+      [
+        [ 'All Alone' ]
+      ]
+    );
+
+  });
+
+  test("pass erroneous matrix dimension number and fills and test errors", () => {
+      // unable to catch throw errors for some reason
+
+      //expect(createMatrix(undefined,undefined)).toEqual(new Error('n is required'));
+      //expect(createMatrix()).toThrowError('n is required');
+
+      expect(createMatrix(1, 6)).toEqual([[6]]);
+    }
+  );
 });
