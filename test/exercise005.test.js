@@ -64,6 +64,8 @@ describe("reverseNumber", () => {
 
 describe("sumArrays", () => {
   test("returns the total of the numbers in all sub arrays", () => {
+    const arrs0 = [[44], [], [1, 2, 3, 4], [46]];
+    expect(sumArrays(arrs0)).toBe(100);
     const arrs = [[1, 2, 3], [6, 3, 1], [1], [9, 10], [3, 5]];
     expect(sumArrays(arrs)).toBe(44);
   });

@@ -31,9 +31,9 @@ const count1sand0s = str => {
 const reverseNumber = n => {
   if (n === undefined) throw new Error("n is required");
 
-  let reverseStr="";
+  let reverseStr = "";
 
-  n.toString().split("").forEach(c => reverseStr = c+reverseStr);
+  n.toString().split("").forEach(c => reverseStr = c + reverseStr);
 
   // parseInt will remove any leading digits
   return parseInt(reverseStr);
@@ -41,7 +41,8 @@ const reverseNumber = n => {
 
 const sumArrays = arrs => {
   if (arrs === undefined) throw new Error("arrs is required");
-  // Your code here!
+
+  return arrs.flat().reduce((a, b) => a + b)
 };
 
 const arrShift = arr => {
