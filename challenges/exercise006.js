@@ -18,6 +18,10 @@ const sumMultiples = arr => {
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
+
+  const validDNA="CGTA";
+
+  return str.split('').filter(dnaChar => validDNA.includes(dnaChar)).length === str.length;
 };
 
 /**
