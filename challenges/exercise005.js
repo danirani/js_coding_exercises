@@ -48,15 +48,14 @@ const sumArrays = arrs => {
 const arrShift = arr => {
   if (arr === undefined) throw new Error("arr is required");
 
-  return  arr.map((value, index, array) =>
-      index === 0 ? array[array.length - 1] :
+  return arr.map((value, index, array) =>
+    index === 0 ? array[array.length - 1] :
       index === array.length - 1 ? array[0] : value);
 };
 
 const findNeedle = (haystack, searchTerm) => {
   if (haystack === undefined) throw new Error("haystack is required");
   if (searchTerm === undefined) throw new Error("searchTerm is required");
-
 
   return Object.keys(haystack)
       .filter(value => haystack[value]    // filter through all key properties
@@ -70,7 +69,35 @@ const findNeedle = (haystack, searchTerm) => {
 
 const getWordFrequencies = str => {
   if (str === undefined) throw new Error("str is required");
-  // Your code here!
+
+  const punctuation = '!"#$%&\'()*+,-./:;?@[\\]^_`{|}~';
+
+  const counter = {};
+
+  str.split(" ").forEach( value =>
+  {
+      // use filter on each keyword to remove any punctuation
+      let key=value.split('').filter( keyLetter => punctuation.indexOf(keyLetter) < 0)
+
+      // join keyword back up without punctuation or capitalization
+      key=key.join("").toLowerCase();
+
+      if(key.length > 0) {
+
+        // do not allow empty keys if all punctuation has been removed
+
+        if(counter[key] === undefined) {
+          // create a new keyword count
+          counter[key] = 1;
+        }
+        else {
+          // add to an existing keyword count
+          counter[key]++;
+        }
+      }
+  });
+
+  return counter;
 };
 
 module.exports = {

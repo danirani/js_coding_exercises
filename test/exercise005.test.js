@@ -181,4 +181,16 @@ describe("getWordFrequencies", () => {
       here: 1
     });
   });
+
+  test("ignores even more punctuation", () => {
+    expect(
+      getWordFrequencies(" ##%## A( Complete )+ Me,ss, Of+? [A] !\"M#$%e&\'s()*+,-./s:;?@a[\\]g^_`{|}~e complet:e")
+    ).toEqual({
+      a: 2,
+      complete: 2,
+      mess: 1,
+      of: 1,
+      message : 1
+    });
+  });
 });
