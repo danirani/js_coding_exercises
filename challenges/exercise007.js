@@ -92,10 +92,18 @@ const getScreentimeAlertList = (users, date) => {
  * This function should transform the hex code into an RGB code in the format:
  * "rgb(255,17,51)"
  * Hint: You will need to convert each hexadecimal value for R, G and B into its decimal equivalent!
- * @param {String} str
+ * @param {String} hexStr
  */
 const hexToRGB = hexStr => {
     if (hexStr === undefined) throw new Error("hexStr is required");
+
+    hexStr = hexStr.replace('#','');
+
+    const red = parseInt(hexStr.substring(0,2), 16);
+    const green = parseInt(hexStr.substring(2,4), 16);
+    const blue = parseInt(hexStr.substring(4,6), 16);
+
+    return `rgb(${red}, ${green}, ${blue})`;
 };
 
 /**
