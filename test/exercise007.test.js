@@ -22,9 +22,14 @@ describe("sumDigits", () => {
 });
 
 describe("createRange", () => {
-    test("create python like range function", () => {
-        expect(createRange(3,11,2)).toBe([3,5,7,9,11]);
-        expect(createRange(3,11)).toBe([3,4,5,6,7,8,9,10,11]);
+    test("create range function", () => {
+        expect(createRange(3,11,2)).toStrictEqual([3,5,7,9,11]);
+        expect(createRange(3,11)).toStrictEqual([3,4,5,6,7,8,9,10,11]);
+        expect(createRange(17,3,30)).toStrictEqual([]);
+        expect(createRange(1,1,30)).toStrictEqual([1]);
+        expect(createRange(10,1,-1)).toStrictEqual([10,9,8,7,6,5,4,3,2,1]);
+        expect(createRange(20,13,-2)).toStrictEqual([20,18,16,14]);
+        expect(createRange(1,1,0)).toStrictEqual([]);
     });
 
     test("check throw errors", () => {
