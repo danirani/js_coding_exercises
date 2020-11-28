@@ -119,6 +119,48 @@ const hexToRGB = hexStr => {
 const findWinner = board => {
     if (board === undefined) throw new Error("board is required");
 
+    // list the index combinations of all winning lines
+    const winningCombs  = ["123","456","789","147","258","369","159","357"];
+
+    // each player has a string dictionary to hold their final index positions
+    const tally = {"X":"", "0":"", null:""};
+
+    // add each player's final index positions to the tally object
+    board.flat().forEach((player,index) => {
+        tally[player]+=(index+1).toString();
+    });
+
+    // check for winning combinations one index at a time with
+    // the player's final index position.
+
+    const checkWinners = player => {
+        for(let singleWin of winningCombs) {
+
+            let match = 0;
+
+            for(let value of singleWin.split('')) {
+                if (tally[player].indexOf(value) !== -1) {
+                    match=match+1;
+                }
+            }
+
+            // this winning position is a match
+            if(match === 3) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    if(checkWinners("X")) {
+        return "X";
+    }
+    else if (checkWinners("0")) {
+        return "0";
+    }
+
+    return null;
 };
 
 module.exports = {

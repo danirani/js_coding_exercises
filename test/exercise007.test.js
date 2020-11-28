@@ -162,6 +162,7 @@ describe("findWinner", () => {
             ["0", null,  "X"]
         ])).toBe("X");
 
+
         expect(findWinner([
             [null, null, "X"],
             [null,   0, null],
