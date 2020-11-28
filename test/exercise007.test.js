@@ -39,9 +39,6 @@ describe("createRange", () => {
     });
 });
 
-
-
-
 describe("getScreentimeAlertList", () => {
 
     const data = [
@@ -119,7 +116,7 @@ describe("getScreentimeAlertList", () => {
 });
 
 describe("hexToRGB", () => {
-    test("create range function", () => {
+    test("hexadecimal to RGB conversion", () => {
         expect(hexToRGB("#FFFFFF")).toBe("rgb(255, 255, 255)");
         expect(hexToRGB("#FFD1E3")).toBe("rgb(255, 209, 227)");
         expect(hexToRGB("#000000")).toBe("rgb(0, 0, 0)");
@@ -130,5 +127,61 @@ describe("hexToRGB", () => {
 
     test("check throw errors", () => {
         expect(() => { hexToRGB(undefined); }).toThrowError('hexStr is required');
+    });
+});
+
+describe("findWinner", () => {
+    test("find noughts and crosses winner", () => {
+        expect(findWinner([
+            ["X", "0", null],
+            ["X", null, "0"],
+            ["X", null, "0"]
+        ])).toBe("X");
+
+        expect(findWinner([
+            ["0", "0", 0],
+            ["X", "X",  null],
+            ["X", null, null]
+        ])).toBe("0");
+
+        expect(findWinner([
+            ["0", "0",  null],
+            ["X", "X",  null],
+            ["X", null, 0]
+        ])).toBe(null);
+
+        expect(findWinner([
+            ["0", null, "X"],
+            ["0", "X",  null],
+            ["X", null, null]
+        ])).toBe("X");
+
+        expect(findWinner([
+            [null, null, "X"],
+            ["0",   0,   "X"],
+            ["0", null,  "X"]
+        ])).toBe("X");
+
+        expect(findWinner([
+            [null, null, "X"],
+            [null,   0, null],
+            ["0", null,  "X"]
+        ])).toBe(null);
+
+        expect(findWinner([
+            [null, "X", "0"],
+            ["0",  "X", "X"],
+            ["0",  "X", "0"]
+        ])).toBe("X");
+
+        expect(findWinner([
+            [null, null, null],
+            ["0", "0", "0"],
+            [null,  "X", "X"]
+        ])).toBe("0");
+    });
+
+    test("check throw errors", () => {
+        expect(() => { findWinner(undefined); }).toThrowError('board is required');
     });
 });
