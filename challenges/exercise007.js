@@ -63,12 +63,26 @@ const createRange = (start, end, step) => {
  * The date will be provided in the format "2019-05-04" (YYYY-MM-DD)
  * For example, if passed the above users and the date "2019-05-04" the function should return ["beth_1234"] as she used over 100 minutes of screentime on that date.
  * @param {Array} users
+ * @param {string} date
  */
+
 const getScreentimeAlertList = (users, date) => {
     if (users === undefined) throw new Error("users is required");
     if (date === undefined) throw new Error("date is required");
 
-};
+    const usersExceeded=[];
+    let addUpMinutes = obj => Object.keys(obj).reduce((sum,key) => sum + obj[key] ,0);
+
+    users.forEach(userArray => userArray.screenTime.forEach(
+        dateArray => {
+            if (dateArray.date === date && addUpMinutes(dateArray.usage) > 100) {
+                usersExceeded.push(userArray.username);
+            }
+        }
+    ));
+
+    return usersExceeded;
+}
 
 /**
  * This function will receive a hexadecimal color code in the format #FF1133. A hexadecimal code is a number written in hexadecimal notation, i.e. base 16. If you want to know more about hexadecimal notation:
