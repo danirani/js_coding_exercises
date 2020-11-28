@@ -117,3 +117,18 @@ describe("getScreentimeAlertList", () => {
         expect(() => { getScreentimeAlertList(data,undefined); }).toThrowError('date is required');
     });
 });
+
+describe("hexToRGB", () => {
+    test("create range function", () => {
+        expect(hexToRGB("#FFFFFF")).toBe("rgb(255, 255, 255)");
+        expect(hexToRGB("#FFD1E3")).toBe("rgb(255, 209, 227)");
+        expect(hexToRGB("#000000")).toBe("rgb(0, 0, 0)");
+        expect(hexToRGB("#103465")).toBe("rgb(16, 52, 101)");
+        expect(hexToRGB("#A1E765")).toBe("rgb(161, 231, 101)");
+        expect(hexToRGB("#EE1278")).toBe("rgb(238, 18, 120)");
+    });
+
+    test("check throw errors", () => {
+        expect(() => { hexToRGB(undefined); }).toThrowError('hexStr is required');
+    });
+});
