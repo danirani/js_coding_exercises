@@ -20,3 +20,16 @@ describe("sumDigits", () => {
         expect(() => { sumDigits(undefined); }).toThrowError('n is required');
     });
 });
+
+describe("createRange", () => {
+    test("create python like range function", () => {
+        expect(createRange(3,11,2)).toBe([3,5,7,9,11]);
+        expect(createRange(3,11)).toBe([3,4,5,6,7,8,9,10,11]);
+    });
+
+    test("check throw errors", () => {
+        expect(() => { createRange(undefined,11); }).toThrowError('start is required');
+        expect(() => { createRange(4,undefined); }).toThrowError('end is required');
+        expect(() => { createRange(undefined,undefined); }).toThrowError('start is required');
+    });
+});
