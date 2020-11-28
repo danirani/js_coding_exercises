@@ -3,7 +3,7 @@
  * @param {Number} n
  */
 const sumDigits = n => {
-  if (n === undefined) throw new Error("n is required");
+    if (n === undefined) throw new Error("n is required");
 };
 
 /**
@@ -15,8 +15,8 @@ const sumDigits = n => {
  * @param {Number} step
  */
 const createRange = (start, end, step) => {
-  if (start === undefined) throw new Error("start is required");
-  if (end === undefined) throw new Error("end is required");
+    if (start === undefined) throw new Error("start is required");
+    if (end === undefined) throw new Error("end is required");
 };
 
 /**
@@ -49,8 +49,8 @@ const createRange = (start, end, step) => {
  * @param {Array} users
  */
 const getScreentimeAlertList = (users, date) => {
-  if (users === undefined) throw new Error("users is required");
-  if (date === undefined) throw new Error("date is required");
+    if (users === undefined) throw new Error("users is required");
+    if (date === undefined) throw new Error("date is required");
 };
 
 /**
@@ -64,7 +64,7 @@ const getScreentimeAlertList = (users, date) => {
  * @param {String} str
  */
 const hexToRGB = hexStr => {
-  if (hexStr === undefined) throw new Error("hexStr is required");
+    if (hexStr === undefined) throw new Error("hexStr is required");
 };
 
 /**
@@ -78,13 +78,13 @@ const hexToRGB = hexStr => {
  * @param {Array} board
  */
 const findWinner = board => {
-  if (board === undefined) throw new Error("board is required");
+    if (board === undefined) throw new Error("board is required");
 };
 
 module.exports = {
-  sumDigits,
-  createRange,
-  getScreentimeAlertList,
-  hexToRGB,
-  findWinner
+    sumDigits,
+    createRange,
+    getScreentimeAlertList,
+    hexToRGB,
+    findWinner
 };
