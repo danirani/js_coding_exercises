@@ -4,6 +4,8 @@
  */
 const sumDigits = n => {
     if (n === undefined) throw new Error("n is required");
+
+    return n.toString().split('').reduce((sum,digit) => sum+parseInt(digit),0);
 };
 
 /**
