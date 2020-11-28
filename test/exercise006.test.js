@@ -1,6 +1,7 @@
 const {
   sumMultiples,
   isValidDNA,
+  getComplementaryDNA,
   isItPrime,
   createMatrix,
   areWeCovered
@@ -18,6 +19,12 @@ describe("sumMultiples", () => {
     expect(sumMultiples([5, 5, 5, 3, 3, 3])).toBe(24);
     expect(sumMultiples([])).toBe(0);
   });
+
+  test("check throw errors", () => {
+    // throw errors require an expect() wrapper
+    expect(() => { sumMultiples(17); }).toThrowError('not an object');
+    expect(() => { sumMultiples(undefined); }).toThrowError('is undefined');
+  });
 });
 
 describe("isValidDNA", () => {
@@ -27,6 +34,29 @@ describe("isValidDNA", () => {
     expect(isValidDNA("AGCTCCT G")).toBe(false);
     expect(isValidDNA("AAAAATT")).toBe(true);
     expect(isValidDNA("AAAAATTX")).toBe(false);
+  });
+
+  test("check throw errors", () => {
+    expect(() => { isValidDNA(undefined); }).toThrowError('is undefined');
+    expect(() => { isValidDNA(99); }).toThrowError('not a string');
+  });
+});
+
+describe("getComplementaryDNA", () => {
+  test("test DNA pairings T<->A, C<->G", () => {
+    expect(getComplementaryDNA("ACTG")).toBe("TGAC");
+    expect(getComplementaryDNA("TACG")).toBe("ATGC");
+    expect(getComplementaryDNA("CAGT")).toBe("GTCA");
+  });
+
+  test("test for invalid DNA strings", () => {
+    expect(() => { getComplementaryDNA("ACTZ"); }).toThrowError('not valid DNA');
+    expect(() => { getComplementaryDNA("PCTG"); }).toThrowError('not valid DNA');
+  });
+
+  test("check throw errors", () => {
+    expect(() => { getComplementaryDNA(undefined); }).toThrowError('is undefined');
+    expect(() => { getComplementaryDNA(99); }).toThrowError('not a string');
   });
 });
 
@@ -58,20 +88,15 @@ describe("isItPrime", () => {
     nonPrimeList.forEach(n => expect(isItPrime(n)).toBe(false));
   });
 
-  test("pass a string instead of a number and empty parameters", () => {
-    // unable to catch throw errors for some reason
-
-    //expect(isItPrime("Prime")).toThrowError('n is not a number')
-    //expect(isItPrime()).toThrowError('n is undefined');
-
-    expect(isItPrime(17)).toBe(true);
-    expect(isItPrime(16)).toBe(false);
+  test("check throw errors", () => {
+    expect(() => { isItPrime(undefined); }).toThrowError('undefined');
+    expect(() => { isItPrime("Prime"); }).toThrowError('not a number');
   });
 });
 
 describe("createMatrix", () => {
   test("pass a matrix dimension number with a fill and check sizing", () => {
-    //expect(createMatrix(undefined,undefined)).toEqual(new Error('n is required'));
+
     expect(createMatrix(4, 'none')).toEqual(
       [
         ['none', 'none', 'none', 'none'],
@@ -88,6 +113,8 @@ describe("createMatrix", () => {
       ]
     );
 
+    expect(createMatrix(1, 6)).toEqual([[6]]);
+
     expect(createMatrix(1, 'All Alone')).toEqual(
       [
         ['All Alone']
@@ -95,15 +122,13 @@ describe("createMatrix", () => {
     );
   });
 
-  test("pass erroneous matrix dimension number and fills and test errors", () => {
-      // unable to catch throw errors for some reason
 
-      //expect(createMatrix(undefined,undefined)).toEqual(new Error('n is required'));
-      //expect(createMatrix()).toThrowError('n is required');
+  test("pass erroneous matrix dimension number and fills and test for throw errors", () => {
+    expect(() => { createMatrix(undefined, undefined); }).toThrowError('n is required');
+    expect(() => { createMatrix(); }).toThrowError('n is required');
+    expect(() => { createMatrix(1,undefined); }).toThrowError('fill is required');
+  });
 
-      expect(createMatrix(1, 6)).toEqual([[6]]);
-    }
-  );
 });
 
 describe("areWeCovered", () => {
@@ -139,5 +164,11 @@ describe("areWeCovered", () => {
     coveredDays2.forEach(day => expect(areWeCovered(staffSchedule2, day)).toBe(true));
 
   });
+
+  test("check throw errors", () => {
+    expect(() => { areWeCovered([],undefined); }).toThrowError('day is required');
+    expect(() => { areWeCovered(undefined,"Monday"); }).toThrowError('staff is required');
+  });
+
 });
 

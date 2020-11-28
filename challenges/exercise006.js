@@ -6,7 +6,8 @@
  */
 
 const sumMultiples = arr => {
-  if (arr === undefined) throw new Error("arr is required");
+  if (arr === undefined) throw new Error("arr is undefined");
+  if (typeof (arr) !== "object") throw new Error("arr is not an object");
 
   return arr.reduce((sum, value) => (value % 5 === 0 || value % 3 === 0) ? sum + value : sum, 0);
 }
@@ -17,7 +18,8 @@ const sumMultiples = arr => {
  * @returns {Boolean}
  */
 const isValidDNA = str => {
-  if (str === undefined) throw new Error("str is required");
+  if (str === undefined) throw new Error("str is undefined");
+  if (typeof (str) !== "string") throw new Error("str is not a string");
 
   const validDNA = "CGTA";
 
@@ -30,7 +32,16 @@ const isValidDNA = str => {
  * @returns {String}
  */
 const getComplementaryDNA = str => {
-  if (str === undefined) throw new Error("str is required");
+  if (str === undefined) throw new Error("str is undefined");
+  if (typeof (str) !== "string") throw new Error("str is not a string");
+
+  if(!isValidDNA(str)) {
+    throw new Error("str is not valid DNA");
+  }
+
+  const mapping= {'T':'A', 'A':'T', 'C':'G', 'G':'C'};
+
+  return str.split('').map(value => mapping[value]).join('');
 };
 
 /**
@@ -39,12 +50,8 @@ const getComplementaryDNA = str => {
  * @returns {Boolean}
  */
 const isItPrime = n => {
-  if (n === undefined) {
-    throw new Error("n is undefined");
-  }
-  if (typeof (n) !== "number") {
-    throw new Error("n is not a number");
-  }
+  if (n === undefined) throw new Error("n is undefined");
+  if (typeof (n) !== "number") throw new Error("n is not a number");
 
   for (let i = 2, s = Math.sqrt(n); i <= s; i++) {
     if (n % i === 0) {
@@ -67,12 +74,8 @@ const isItPrime = n => {
  * @returns {Array}
  */
 const createMatrix = (n, fill) => {
-  if (n === undefined) {
-    throw new Error('n is required');
-  }
-  if (fill === undefined) {
-    throw new Error('fill is required');
-  }
+  if (n === undefined) throw new Error('n is required');
+  if (fill === undefined) throw new Error('fill is required');
 
   const matrix = [];
 
@@ -104,7 +107,6 @@ const createMatrix = (n, fill) => {
  */
 const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
-
   if (day === undefined) throw new Error("day is required");
 
   return staff.reduce((total, value) => value.rota.indexOf(day) >= 0 ? total + 1 : total, 0) >= 3;
